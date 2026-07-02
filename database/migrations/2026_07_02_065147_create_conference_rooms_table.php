@@ -1,0 +1,30 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('conference_rooms', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->unique();        // 会議室名（重複不可）
+            $table->integer('capacity');             // 定員
+            $table->string('equipment')->nullable(); // 設備（任意）
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('conference_rooms');
+    }
+};
