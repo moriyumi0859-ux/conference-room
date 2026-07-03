@@ -11,6 +11,9 @@ use App\Http\Controllers\Admin\ReservationController as AdminReservationControll
 
 // トップページ
 Route::get('/', function () {
+    if (auth()->check()) {
+        return redirect()->route('conference-rooms.index');
+    }
     return redirect()->route('login');
 });
 
